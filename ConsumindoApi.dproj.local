@@ -22,15 +22,17 @@
     <Transaction>2024/01/10 10:19:37.000.559,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
     <Transaction>2024/01/10 10:23:34.000.394,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\dto.itens.pas</Transaction>
     <Transaction>2024/01/10 16:46:40.000.424,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
-    <Transaction>2024/01/10 17:15:52.000.872,C:\Estudos Delphi\Consumindo Api\model.Pedido.pas=</Transaction>
     <Transaction>2024/01/10 17:15:52.000.956,C:\Estudos Delphi\Consumindo Api\model.Itens.pas=</Transaction>
-    <Transaction>2024/01/10 17:15:53.000.087,C:\Estudos Delphi\Consumindo Api\dto.intefaces.pas=</Transaction>
-    <Transaction>2024/01/10 17:15:53.000.039,C:\Estudos Delphi\Consumindo Api\dto.itens.pas=</Transaction>
+    <Transaction>2024/01/10 17:15:52.000.872,C:\Estudos Delphi\Consumindo Api\model.Pedido.pas=</Transaction>
     <Transaction>2024/01/10 17:15:53.000.002,C:\Estudos Delphi\Consumindo Api\dto.pedido.pas=</Transaction>
+    <Transaction>2024/01/10 17:15:53.000.039,C:\Estudos Delphi\Consumindo Api\dto.itens.pas=</Transaction>
+    <Transaction>2024/01/10 17:15:53.000.087,C:\Estudos Delphi\Consumindo Api\dto.intefaces.pas=</Transaction>
     <Transaction>2024/01/11 15:29:14.000.507,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
     <Transaction>2024/01/11 15:30:05.000.281,C:\Estudos Delphi\Consumindo Api\UJson.DTO.pas=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
     <Transaction>2024/01/12 10:15:24.000.925,C:\Estudos Delphi\Consumindo Api\UJson.DTO.pas=</Transaction>
     <Transaction>2024/01/12 10:15:42.000.520,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
     <Transaction>2024/01/12 10:16:00.000.520,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\UJsonDTO.pas</Transaction>
+    <Transaction>2024/01/22 17:17:40.274,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/22 17:18:22.757,C:\Estudos Delphi\Consumindo Api\Uusuario.pas=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

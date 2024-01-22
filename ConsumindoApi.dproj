@@ -103,6 +103,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UJsonDTO.pas"/>
+        <DCCReference Include="Uusuario.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

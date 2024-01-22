@@ -3,7 +3,8 @@ program ConsumindoApi;
 uses
   Vcl.Forms,
   UConsumindoApi in 'UConsumindoApi.pas' {FConsumindoApi},
-  UJsonDTO in 'UJsonDTO.pas';
+  UJsonDTO in 'UJsonDTO.pas',
+  Uusuario in 'Uusuario.pas';
 
 {$R *.res}
 

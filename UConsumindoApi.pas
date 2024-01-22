@@ -102,6 +102,12 @@ type
     btnSalvar: TBitBtn;
     cdsItensSubtotal: TAggregateField;
     HTTPBasicAuthenticator1: THTTPBasicAuthenticator;
+    AbaUsuario: TTabSheet;
+    Label17: TLabel;
+    Label18: TLabel;
+    Image4: TImage;
+    edUsuario: TEdit;
+    edSenha: TEdit;
     procedure BtnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Image1Click(Sender: TObject);
@@ -117,6 +123,8 @@ type
     procedure edCpfCliExit(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure edprecoKeyPress(Sender: TObject; var Key: Char);
+    procedure FormShow(Sender: TObject);
+    procedure Image4Click(Sender: TObject);
   private
     { Private declarations }
     Url :String;
@@ -127,7 +135,7 @@ type
     { Public declarations }
     procedure LimparCampos;
     procedure Colorir(sTexto : string);
-    procedure AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco : String);
+    procedure AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco,sSenha: String; bTipUsu : Boolean);
   end;
 
 var
@@ -137,28 +145,33 @@ implementation
 
 {$R *.dfm}
 
-uses UJsonDTO;
+uses UJsonDTO,Uusuario;
 
-procedure TFConsumindoApi.AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco : String);
+procedure TFConsumindoApi.AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco,sSenha: String; bTipUsu : Boolean);
 var
  JsonBody : TJSONObject;
 begin
-
-
   Try
     Try
       JsonBody := TJSONObject.Create;
 
-      if sTipo = 'C' then
+      if sTipo = 'C' then // Cliente
       begin
         JsonBody.AddPair('nome',sNome);
         JsonBody.AddPair('cpf',Scpf);
       end
       else
-      if sTipo = 'P' then
+      if sTipo = 'P' then // Produto
       begin
         JsonBody.AddPair('descricao',sNome);
         JsonBody.AddPair('preco', TJSONNumber.Create(StrToCurr(spreco)));
+      end
+      else
+      if sTipo = 'U' then // Usuário
+      begin
+        JsonBody.AddPair('login',sNome);
+        JsonBody.AddPair('senha',sSenha);
+        JsonBody.AddPair('admin', TJSONBool.Create(bTipUsu));
       end;
 
       // post
@@ -183,7 +196,19 @@ begin
          if sTipo = 'C' then
           ShowMessage('Cliente enviado para Api com sucesso')
          else
+         if sTipo = 'P' then
           ShowMessage('Produto enviado para Api com sucesso')
+         else
+         if sTipo = 'U' then
+         begin
+
+          Url:= 'http://localhost:8080/api/usuarios/' ;
+
+          rcPedido.BaseURL :=  Url;
+          rqPedido.Execute;
+          MRespostaJson.Lines.add(rqPedido.Response.JSONText);
+          ShowMessage('Usuário enviado para Api com sucesso');
+         end;
       end;
 
     except on ex : Exception do
@@ -333,7 +358,7 @@ procedure TFConsumindoApi.FormCreate(Sender: TObject);
 begin
   PgJson.ActivePageIndex := 0;
   Pagina.ActivePageIndex := 0;
-  TbCadastro.ActivePage := AbaCliente;
+  TbCadastro.ActivePage := AbaUsuario;
 
   edCliente.Clear;
   edCpfCli.Clear;
@@ -344,6 +369,8 @@ begin
   EdPedProd.Clear;
   EdPedPreco.Clear;
   EdPedQtd.Clear;
+  edSenha.Clear;
+  edUsuario.Clear;
   cdsItens.CreateDataSet;
   cdsItens.Open;
   cdsCliente.CreateDataSet;
@@ -358,6 +385,11 @@ begin
      begin
           Perform(WM_NEXTDLGCTL,0,0);
      end;
+end;
+
+procedure TFConsumindoApi.FormShow(Sender: TObject);
+begin
+  edUsuario.SetFocus;
 end;
 
 procedure TFConsumindoApi.Image1Click(Sender: TObject);
@@ -376,7 +408,7 @@ begin
     exit;
   end;
 
-  AdicinaCadastro('C',edCliente.Text,edCpfCli.Text,'http://localhost:8080/api/clientes','');
+  AdicinaCadastro('C',edCliente.Text,edCpfCli.Text,'http://localhost:8080/api/clientes','','',False);
   edCliente.Clear;
   edCpfCli.Clear;
   edCliente.SetFocus;
@@ -405,7 +437,7 @@ begin
     exit;
   end;
 
-  AdicinaCadastro('P',edProduto.Text,edpreco.Text,'http://localhost:8080/api/produto',edpreco.Text);
+  AdicinaCadastro('P',edProduto.Text,edpreco.Text,'http://localhost:8080/api/produto',edpreco.Text,'',False);
 
 
   edProduto.Clear;
@@ -482,6 +514,32 @@ begin
   edPedcli.SetFocus;
   cdsItens.EmptyDataSet;
 
+end;
+
+procedure TFConsumindoApi.Image4Click(Sender: TObject);
+begin
+  if Trim(edUsuario.Text) = '' then
+  begin
+    Application.MessageBox('Usuário não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+    PgJson.ActivePageIndex := 0;
+    TbCadastro.ActivePage := AbaUsuario;
+    edUsuario.SetFocus;
+    exit;
+  end;
+
+  if Trim(edSenha.Text) = '' then
+  begin
+    Application.MessageBox('Senha não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+    PgJson.ActivePageIndex := 0;
+    TbCadastro.ActivePage := AbaUsuario;
+    edSenha.SetFocus;
+    exit;
+  end;
+
+  AdicinaCadastro('U',edUsuario.Text,'','http://localhost:8080/api/usuarios','',edSenha.Text,True);
+  edUsuario.Clear;
+  edSenha.Clear;
+  edUsuario.SetFocus;
 end;
 
 procedure TFConsumindoApi.LimparCampos;
