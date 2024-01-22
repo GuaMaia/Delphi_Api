@@ -1,0 +1,48 @@
+unit model.Pedido;
+
+interface
+
+uses // tem a visibildade para outras units
+  System.Generics.Collections;
+
+Type
+  TPedido = class
+
+  private
+    /// Pedido
+    FCodigo : Integer;
+    FCpf : String;
+    FNomeCliente : String;
+    FTotal : Double;
+    FDataPedido : String;
+    FStatus : String;
+    FItens : TItens;
+  public
+    property Codigo : Integer read FCodigo write FCodigo;
+    property Cpf : String read FCpf write FCpf;
+    property NomeCliente : String read FNomeCliente write FNomeCliente;
+    property Total : Double read FTotal write FTotal;
+    property DataPedido : String read FDataPedido write FDataPedido;
+    property Status : String read FStatus write FStatus;
+    property Itens : TItens read FStatus write FItens;
+
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
+implementation
+
+{ TPedido }
+
+constructor TPedido.Create;
+begin
+
+end;
+
+destructor TPedido.Destroy;
+begin
+
+  inherited;
+end;
+
+end.

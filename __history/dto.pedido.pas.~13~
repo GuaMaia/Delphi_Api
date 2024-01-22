@@ -1,0 +1,110 @@
+unit dto.pedido;
+
+interface
+
+uses
+  dto.intefaces,System.SysUtils,System.JSON,
+  System.Generics.Collections, model.Pedido;
+
+type
+  TPedidoDTO = class(TInterfacedObject,iPedido)
+    private
+      FPedido : TPedido;
+    public
+      constructor Create;
+      destructor Destroy; override;
+
+      function Cpf (Value :String) : iPedido; overload;
+      function Cpf: String; overload;
+      function NomeCliente (Value :String) : iPedido; overload;
+      function NomeCliente: String; overload;
+      function Total (Value :Double) : iPedido; overload;
+      function Total: Double; overload;
+      function DataPedido (Value :String) : iPedido; overload;
+      function DataPedido: String; overload;
+      function Status (Value :String) : iPedido; overload;
+      function Status: String; overload;
+      function Item : iItem;
+      function Build : ipedido; // Construi o Objeto
+
+  end;
+
+implementation
+
+{ TPedido }
+
+
+
+constructor TPedidoDTO.Create;
+begin
+  FPedido := FPedido.New;
+end;
+
+destructor TPedidoDTO.Destroy;
+begin
+  FPedido.Free;
+  inherited;
+end;
+
+function TPedidoDTO.Cpf(Value: String): iPedido;
+begin
+  Result := Self;
+  FPedido.Cpf := Value;
+end;
+
+function TPedidoDTO.Cpf: String;
+begin
+  Result := FPedido.Cpf;
+end;
+
+function TPedidoDTO.DataPedido: String;
+begin
+
+end;
+
+function TPedidoDTO.DataPedido(Value: String): iPedido;
+begin
+
+end;
+
+function TPedidoDTO.Item: iItem;
+begin
+
+end;
+
+function TPedidoDTO.NomeCliente(Value: String): iPedido;
+begin
+
+end;
+
+function TPedidoDTO.NomeCliente: String;
+begin
+
+end;
+
+function TPedidoDTO.Status: String;
+begin
+
+end;
+
+function TPedidoDTO.Status(Value: String): iPedido;
+begin
+
+end;
+
+function TPedidoDTO.Total(Value: Double): iPedido;
+begin
+
+end;
+
+function TPedidoDTO.Total: Double;
+begin
+
+end;
+
+function TPedidoDTO.Build;
+begin
+  Result := Self;
+end;
+
+end.

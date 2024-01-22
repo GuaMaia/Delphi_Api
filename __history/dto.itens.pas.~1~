@@ -1,0 +1,28 @@
+unit dto.itens;
+
+interface
+
+uses
+  model.Itens;
+
+type
+  TItensDTO = class(TInterfacedObject,iItens)
+    private
+      FiItens : TiItens;
+    public
+      constructor Create;
+      destructor Destroy; override;
+
+      function Produto (Value :String) : iItem; overload;
+      function Produto: String; overload;
+      function Preco (Value :Double) : iItem; overload;
+      function Preco: Double; overload;
+      function Qtd (Value : Integer) : iItem; overload;
+      function Qtd: Integer; overload;
+      function Build : ipedido; // Tenho relacionamento com o pedido
+
+  end;
+
+implementation
+
+end.

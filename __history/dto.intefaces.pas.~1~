@@ -1,0 +1,36 @@
+unit dto.intefaces;
+
+interface
+
+type
+
+  iItem = interface;
+
+  iPedido = interface
+    function Cpf (Value :String) : iPedido; overload;
+    function Cpf: String; overload;
+    function NomeCliente (Value :String) : iPedido; overload;
+    function NomeCliente: String; overload;
+    function Total (Value :Double) : iPedido; overload;
+    function Total: Double; overload;
+    function DataPedido (Value :String) : iPedido; overload;
+    function DataPedido: String; overload;
+    function Status (Value :String) : iPedido; overload;
+    function Status: String; overload;
+    function Item : iItem;
+    function Build : ipedido; // Construi o Objeto
+  end;
+
+   iItem = interface
+    function Produto (Value :String) : iItem; overload;
+    function Produto: String; overload;
+    function Preco (Value :Double) : iItem; overload;
+    function Preco: Double; overload;
+    function Qtd (Value : Integer) : iItem; overload;
+    function Qtd: Integer; overload;
+    function Build : ipedido; // Tenho relacionamento com o pedido
+   end;
+
+implementation
+
+end.

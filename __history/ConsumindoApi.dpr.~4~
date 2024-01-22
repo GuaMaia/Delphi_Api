@@ -1,0 +1,16 @@
+program ConsumindoApi;
+
+uses
+  Vcl.Forms,
+  UConsumindoApi in 'UConsumindoApi.pas' {FConsumindoApi},
+  model.Pedido in 'model.Pedido.pas',
+  model.Itens in 'model.Itens.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFConsumindoApi, FConsumindoApi);
+  Application.Run;
+end.

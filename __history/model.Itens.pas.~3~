@@ -1,0 +1,23 @@
+Unit model.Itens;
+
+interface
+
+uses model.Pedido;
+
+Type
+  TItens = class
+
+  private
+    FProduto : String;
+    FPreco : Double;
+    FQtd : Integer;
+  public
+   property Produto : String read FProduto write FProduto;
+   property Preco: Double read FPreco write FPreco;
+   property Qtd : Integer read FQtd write FQtd;
+  end;
+
+implementation
+
+end.
+

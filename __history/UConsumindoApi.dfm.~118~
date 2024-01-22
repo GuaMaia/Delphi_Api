@@ -1,0 +1,992 @@
+object FConsumindoApi: TFConsumindoApi
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = 'Consumindo Api'
+  ClientHeight = 444
+  ClientWidth = 622
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  KeyPreview = True
+  Position = poDesktopCenter
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  TextHeight = 15
+  object PgJson: TPageControl
+    Left = 0
+    Top = 0
+    Width = 622
+    Height = 444
+    ActivePage = Aba1
+    Align = alClient
+    TabOrder = 0
+    ExplicitWidth = 618
+    ExplicitHeight = 443
+    object Aba1: TTabSheet
+      Caption = 'Cadastro'
+      ImageIndex = 1
+      object TbCadastro: TPageControl
+        Left = 0
+        Top = 0
+        Width = 614
+        Height = 414
+        ActivePage = AbaCliente
+        Align = alClient
+        TabOrder = 0
+        object AbaCliente: TTabSheet
+          Caption = 'Cadastro de Cliente'
+          DesignSize = (
+            606
+            384)
+          object Label9: TLabel
+            Left = 3
+            Top = 3
+            Width = 37
+            Height = 15
+            Caption = 'Cliente'
+          end
+          object Label10: TLabel
+            Left = 3
+            Top = 60
+            Width = 19
+            Height = 15
+            Caption = 'Cpf'
+          end
+          object Image1: TImage
+            Left = 144
+            Top = 60
+            Width = 57
+            Height = 53
+            Anchors = [akLeft, akBottom]
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000340000
+              00340806000000C5781BEB0000000473424954080808087C0864880000000173
+              52474200AECE1CE90000000467414D410000B18F0BFC61050000000970485973
+              00000EC400000EC401952B0E1B0000001974455874536F667477617265007777
+              772E696E6B73636170652E6F72679BEE3C1A0000067E4944415478DADD5A7B6C
+              53551CFEEEBA6EEDDAAD452ADBE85E14A6128D243A1C06F51F90650347F79089
+              3351131FE040448382FEAD38C46726A0C81F181E816CA303B609031383440718
+              A3093081BDA063C5ACD0767DACEDDA7ACEDD0A74BBEB5D77EFBACA9735597A9A
+              7BCF77CEF97DBFC7F93101028804BBC78E5F7B4EA3CBDA8D0E5B27FA9C66583D
+              560C0C0EB0E3B2781954092A689234C849C9864E9583A7B40BA14C508A350530
+              42095DB75FC7FEB683A8BD540FBBD70E75A21A091229244C3CF9C4218E7CC00C
+              FF98BCC91FF0C3C77E06E1F17961715BA0902A50965B82CAB92F60A672E6D410
+              3A67FA039B5BAB71C5D28EE9F2E9ECEAB3939F00E8145C6417CDAE3ECC51CFC1
+              C6FC0D989F96171D42C67E23D69C78074687111AB906F171F18256742406FD83
+              E8739991A1D4A266D157C848CE983C429FB66EC1FE7F0E225D91263A112E62BD
+              0E13563E58C1EE98A884BCBE412C3D544C8E850BAA44D5A4121909ABDB0A797C
+              121A4B0C9012DB144CE89ACD087D4319A613654A88E37FE064C0E3F7C2ECEC83
+              415F874C9E231896D079F3795436BECC2ACF440D5E2C5075EC218ABAB768371E
+              D13C1C3921BA33CF194AA025641886412C804EB5C7DE83237A033253B8778A93
+              909718E4823D0B91AA4C9DF29D1909BA5337EC37D0FAD2694E61E22454505B44
+              46184805DA0C55AA918FA7BB2D8993105F3BF15DF7129BA2CF3D5EDEC44F6833
+              91E6A6CE9F889AA50822E3F2BA88016712879B789B1425E3F6B971951C67B954
+              26E8F956B70DCB7485F8E08950490F2144ED6619B19BCC64ADA097D115CC4ACE
+              C2CE25DB39C757B554A1C3DAC5864842708D38792AE7773BDF10427A43395C3E
+              97E0A34663B4D9AA59D8FE6C0DE7F8BA9FDFC5859B1791284914BC7072898C95
+              F35184CE9ACE6175CB5AA41121100A4A484708ED1883D0DA93EBD176AB4D3021
+              0A93E306762CAE415EDAE3A1844A0D2BE0F439450969A249880A8F82441275CB
+              0FDE21445380C2FA625E2F1C8B8428A82D35971E210140FA10A1AD67BF60952D
+              499AF4BF24E4F43AB1745621DE9BBF7E88D082BD4F939CE63ED122826813A256
+              6376DDC4EF95A7C0F4BBFB034FEE7B06D9AA2C511E3E158428BAAD57F11B25D4
+              DC712CF071EB6651D382A92044D38C8FF23781D9F6E78E40EDE57A9273C8C737
+              59A2FDE049A1583FA4D66157C1779CE3AB4FACC505F3055E424C04E117CDD5CA
+              73CBC06CF86563E0AF7FFF1E57F244C399DC69B9C32F199B149552AA981F2ED8
+              C8395E7D662BDA2DED61274BC9D08569B7B68F6BB1BDE4B7F3663C0AE6D5E6D7
+              03BD8E5E36600C073AC9D4A454EC2EDC35AE15130BAF34BF0693D3C4EB1F7D7E
+              1FD21544B64B1B560468DD8C4FE1D8F84C998D9D05DBA24A68D5F12A74DABA78
+              4F10553A19D949A6A8AE38402379BE709E12CA5466E18782ED8826DE3CFE16BA
+              6CDDFC84A80990BF7B8F506943053972AE7BE4C8C92213851944147E8C615160
+              63B988649BECA44EA523721B3FB4C561C8CF4AC91953B63F69AD660BFAD23093
+              1C926D0F91ED0E92F3C8C197B1B3B27DFFBCC81D6B309FE77B38F557DF2FE13E
+              9E6F10BBB874EB326FC6CA3A5646CA4B26B8D8AC639D9CD0C7835CF51C7CBBF8
+              1BCEF1AA136FE3B2E50A219420DA3B6F873E93139C469F101B9CBE786A387DD8
+              47D2079998E9437409B1E9C300491F82843E3FF7251A3B9A454CF0A24B884DF0
+              7424C1CB5B7F570A5E573C667935D6098D4AC1E99765872BE0F03A442A92448F
+              10679184FE43AF1857B5AC11A98C153D4226BB892492DB9097F65828210ABDE1
+              79B87C4E110A8D1E3C40FC50CDA2AF39C7D79C5C37EC8784111A2A34CA61D0D7
+              DEFE2E8490D1D683A586E582CB59F445D9C9D9611D6B777FB7E085A3B6D35472
+              18DAE43B37E7A38AF5D5673EC351A2786214EB3392B54888A36976F015249CF1
+              BB61ECEF815C3ABEC8642C5047BA4C5714BE581FC492DAA288F2F9B130D6758A
+              50E1F1B2750DE05879E3A8314E427422F97B172255718F5C785118D9AB153DB4
+              4A6DCC5D491ED51B9011C9956410B176694C03803D13BD340E822A89DE101BD7
+              FA0DFA7A5668C2615C8D173EDF208A0E15C339858D174D250D8897F08B4944AD
+              3154D2F75D3C807465945A634814B0F2A149688DB91BD428AB5AD64D7AF352A6
+              3203358BBF62452912086C2FDB822B242613D25E46F5D31FD25E361B9BF2DF27
+              B15994DACB46E2BABD17FBDB0EA0EE523DFABDFD50274E8BA801F096DB02A554
+              81F2DC5254CEAD20C7798A1A00B960F738865A346DDDE8B474A06FC00C8B3BB4
+              45534D444523D3B055A11C75B0455321D614F01FE3B41FB92DD44B4B00000000
+              49454E44AE426082}
+            OnClick = Image1Click
+          end
+          object SpeedButton1: TSpeedButton
+            Left = 3
+            Top = 128
+            Width = 97
+            Height = 22
+            DisabledImageName = 'BtnPesqCli'
+            Caption = 'Buscar Cliente'
+            OnClick = SpeedButton1Click
+          end
+          object edCliente: TEdit
+            Left = 3
+            Top = 19
+            Width = 518
+            Height = 23
+            ImeName = 'Portuguese (Brazilian ABNT)'
+            TabOrder = 0
+          end
+          object edCpfCli: TEdit
+            Left = 3
+            Top = 77
+            Width = 118
+            Height = 23
+            TabOrder = 1
+            OnExit = edCpfCliExit
+          end
+          object dbgCliente: TDBGrid
+            Left = 0
+            Top = 168
+            Width = 606
+            Height = 216
+            Align = alBottom
+            DataSource = dsCliente
+            TabOrder = 2
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -12
+            TitleFont.Name = 'Segoe UI'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'Codcli'
+                Title.Caption = 'C'#243'digo'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Cliente'
+                Width = 399
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cpf'
+                Visible = True
+              end>
+          end
+        end
+        object AbaProduto: TTabSheet
+          Caption = 'Cadastro de Produto'
+          ImageIndex = 1
+          DesignSize = (
+            606
+            384)
+          object Label11: TLabel
+            Left = 11
+            Top = 11
+            Width = 43
+            Height = 15
+            Caption = 'Produto'
+          end
+          object Label12: TLabel
+            Left = 11
+            Top = 68
+            Width = 75
+            Height = 15
+            Caption = 'Pre'#231'o Unit'#225'rio'
+          end
+          object Image2: TImage
+            Left = 152
+            Top = 60
+            Width = 57
+            Height = 53
+            Anchors = [akLeft, akBottom]
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000340000
+              00340806000000C5781BEB0000000473424954080808087C0864880000000173
+              52474200AECE1CE90000000467414D410000B18F0BFC61050000000970485973
+              00000EC400000EC401952B0E1B0000001974455874536F667477617265007777
+              772E696E6B73636170652E6F72679BEE3C1A0000067E4944415478DADD5A7B6C
+              53551CFEEEBA6EEDDAAD452ADBE85E14A6128D243A1C06F51F90650347F79089
+              3351131FE040448382FEAD38C46726A0C81F181E816CA303B609031383440718
+              A3093081BDA063C5ACD0767DACEDDA7ACEDD0A74BBEB5D77EFBACA9735597A9A
+              7BCF77CEF97DBFC7F93101028804BBC78E5F7B4EA3CBDA8D0E5B27FA9C66583D
+              560C0C0EB0E3B2781954092A689234C849C9864E9583A7B40BA14C508A350530
+              42095DB75FC7FEB683A8BD540FBBD70E75A21A091229244C3CF9C4218E7CC00C
+              FF98BCC91FF0C3C77E06E1F17961715BA0902A50965B82CAB92F60A672E6D410
+              3A67FA039B5BAB71C5D28EE9F2E9ECEAB3939F00E8145C6417CDAE3ECC51CFC1
+              C6FC0D989F96171D42C67E23D69C78074687111AB906F171F18256742406FD83
+              E8739991A1D4A266D157C848CE983C429FB66EC1FE7F0E225D91263A112E62BD
+              0E13563E58C1EE98A884BCBE412C3D544C8E850BAA44D5A4121909ABDB0A797C
+              121A4B0C9012DB144CE89ACD087D4319A613654A88E37FE064C0E3F7C2ECEC83
+              415F874C9E231896D079F3795436BECC2ACF440D5E2C5075EC218ABAB768371E
+              D13C1C3921BA33CF194AA025641886412C804EB5C7DE83237A033253B8778A93
+              909718E4823D0B91AA4C9DF29D1909BA5337EC37D0FAD2694E61E22454505B44
+              46184805DA0C55AA918FA7BB2D8993105F3BF15DF7129BA2CF3D5EDEC44F6833
+              91E6A6CE9F889AA50822E3F2BA88016712879B789B1425E3F6B971951C67B954
+              26E8F956B70DCB7485F8E08950490F2144ED6619B19BCC64ADA097D115CC4ACE
+              C2CE25DB39C757B554A1C3DAC5864842708D38792AE7773BDF10427A43395C3E
+              97E0A34663B4D9AA59D8FE6C0DE7F8BA9FDFC5859B1791284914BC7072898C95
+              F35184CE9ACE6175CB5AA41121100A4A484708ED1883D0DA93EBD176AB4D3021
+              0A93E306762CAE415EDAE3A1844A0D2BE0F439450969A249880A8F82441275CB
+              0FDE21445380C2FA625E2F1C8B8428A82D35971E210140FA10A1AD67BF60952D
+              499AF4BF24E4F43AB1745621DE9BBF7E88D082BD4F939CE63ED122826813A256
+              6376DDC4EF95A7C0F4BBFB034FEE7B06D9AA2C511E3E158428BAAD57F11B25D4
+              DC712CF071EB6651D382A92044D38C8FF23781D9F6E78E40EDE57A9273C8C737
+              59A2FDE049A1583FA4D66157C1779CE3AB4FACC505F3055E424C04E117CDD5CA
+              73CBC06CF86563E0AF7FFF1E57F244C399DC69B9C32F199B149552AA981F2ED8
+              C8395E7D662BDA2DED61274BC9D08569B7B68F6BB1BDE4B7F3663C0AE6D5E6D7
+              03BD8E5E36600C073AC9D4A454EC2EDC35AE15130BAF34BF0693D3C4EB1F7D7E
+              1FD21544B64B1B560468DD8C4FE1D8F84C998D9D05DBA24A68D5F12A74DABA78
+              4F10553A19D949A6A8AE38402379BE709E12CA5466E18782ED8826DE3CFE16BA
+              6CDDFC84A80990BF7B8F506943053972AE7BE4C8C92213851944147E8C615160
+              63B988649BECA44EA523721B3FB4C561C8CF4AC91953B63F69AD660BFAD23093
+              1C926D0F91ED0E92F3C8C197B1B3B27DFFBCC81D6B309FE77B38F557DF2FE13E
+              9E6F10BBB874EB326FC6CA3A5646CA4B26B8D8AC639D9CD0C7835CF51C7CBBF8
+              1BCEF1AA136FE3B2E50A219420DA3B6F873E93139C469F101B9CBE786A387DD8
+              47D2079998E9437409B1E9C300491F82843E3FF7251A3B9A454CF0A24B884DF0
+              7424C1CB5B7F570A5E573C667935D6098D4AC1E99765872BE0F03A442A92448F
+              10679184FE43AF1857B5AC11A98C153D4226BB892492DB9097F65828210ABDE1
+              79B87C4E110A8D1E3C40FC50CDA2AF39C7D79C5C37EC8784111A2A34CA61D0D7
+              DEFE2E8490D1D683A586E582CB59F445D9C9D9611D6B777FB7E085A3B6D35472
+              18DAE43B37E7A38AF5D5673EC351A2786214EB3392B54888A36976F015249CF1
+              BB61ECEF815C3ABEC8642C5047BA4C5714BE581FC492DAA288F2F9B130D6758A
+              50E1F1B2750DE05879E3A8314E427422F97B172255718F5C785118D9AB153DB4
+              4A6DCC5D491ED51B9011C9956410B176694C03803D13BD340E822A89DE101BD7
+              FA0DFA7A5668C2615C8D173EDF208A0E15C339858D174D250D8897F08B4944AD
+              3154D2F75D3C807465945A634814B0F2A149688DB91BD428AB5AD64D7AF352A6
+              3203358BBF62452912086C2FDB822B242613D25E46F5D31FD25E361B9BF2DF27
+              B15994DACB46E2BABD17FBDB0EA0EE523DFABDFD50274E8BA801F096DB02A554
+              81F2DC5254CEAD20C7798A1A00B960F738865A346DDDE8B474A06FC00C8B3BB4
+              45534D444523D3B055A11C75B0455321D614F01FE3B41FB92DD44B4B00000000
+              49454E44AE426082}
+            OnClick = Image2Click
+          end
+          object btnProduto: TSpeedButton
+            Left = 11
+            Top = 136
+            Width = 97
+            Height = 22
+            DisabledImageName = 'BtnPesqCli'
+            Caption = 'Buscar Produto'
+            OnClick = btnProdutoClick
+          end
+          object edProduto: TEdit
+            Left = 11
+            Top = 27
+            Width = 518
+            Height = 23
+            ImeName = 'Portuguese (Brazilian ABNT)'
+            TabOrder = 0
+          end
+          object edpreco: TEdit
+            Left = 11
+            Top = 84
+            Width = 118
+            Height = 23
+            NumbersOnly = True
+            TabOrder = 1
+            OnExit = edprecoExit
+          end
+          object ddgProduto: TDBGrid
+            Left = 0
+            Top = 164
+            Width = 606
+            Height = 220
+            Align = alBottom
+            DataSource = dsProduto
+            ImeName = 'Portuguese (Brazilian ABNT)'
+            TabOrder = 2
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -12
+            TitleFont.Name = 'Segoe UI'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'CodProd'
+                Title.Caption = 'C'#243'digo'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Produto'
+                Width = 383
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'preco'
+                Title.Alignment = taRightJustify
+                Title.Caption = 'Pre'#231'o Unit'#225'rio'
+                Width = 97
+                Visible = True
+              end>
+          end
+        end
+      end
+    end
+    object Aba2: TTabSheet
+      Caption = 'Pedido'
+      object Pagina: TPageControl
+        Left = 0
+        Top = 0
+        Width = 614
+        Height = 414
+        ActivePage = Pag1
+        Align = alClient
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        Style = tsFlatButtons
+        TabOrder = 0
+        ExplicitWidth = 610
+        ExplicitHeight = 413
+        object Pag1: TTabSheet
+          Caption = 'Criar Pedido'
+          DesignSize = (
+            606
+            381)
+          object Label2: TLabel
+            Left = 8
+            Top = 3
+            Width = 37
+            Height = 15
+            Caption = 'Cliente'
+          end
+          object Label13: TLabel
+            Left = 8
+            Top = 48
+            Width = 43
+            Height = 15
+            Caption = 'Produto'
+          end
+          object Label14: TLabel
+            Left = 408
+            Top = 48
+            Width = 30
+            Height = 15
+            Caption = 'Pre'#231'o'
+          end
+          object Label15: TLabel
+            Left = 11
+            Top = 94
+            Width = 20
+            Height = 15
+            Caption = 'Qtd'
+          end
+          object Label16: TLabel
+            Left = 74
+            Top = 94
+            Width = 25
+            Height = 15
+            Caption = 'Total'
+          end
+          object Image3: TImage
+            Left = 516
+            Top = 97
+            Width = 57
+            Height = 53
+            Anchors = [akLeft, akBottom]
+            Picture.Data = {
+              0954506E67496D61676589504E470D0A1A0A0000000D49484452000000340000
+              00340806000000C5781BEB0000000473424954080808087C0864880000000173
+              52474200AECE1CE90000000467414D410000B18F0BFC61050000000970485973
+              00000EC400000EC401952B0E1B0000001974455874536F667477617265007777
+              772E696E6B73636170652E6F72679BEE3C1A0000067E4944415478DADD5A7B6C
+              53551CFEEEBA6EEDDAAD452ADBE85E14A6128D243A1C06F51F90650347F79089
+              3351131FE040448382FEAD38C46726A0C81F181E816CA303B609031383440718
+              A3093081BDA063C5ACD0767DACEDDA7ACEDD0A74BBEB5D77EFBACA9735597A9A
+              7BCF77CEF97DBFC7F93101028804BBC78E5F7B4EA3CBDA8D0E5B27FA9C66583D
+              560C0C0EB0E3B2781954092A689234C849C9864E9583A7B40BA14C508A350530
+              42095DB75FC7FEB683A8BD540FBBD70E75A21A091229244C3CF9C4218E7CC00C
+              FF98BCC91FF0C3C77E06E1F17961715BA0902A50965B82CAB92F60A672E6D410
+              3A67FA039B5BAB71C5D28EE9F2E9ECEAB3939F00E8145C6417CDAE3ECC51CFC1
+              C6FC0D989F96171D42C67E23D69C78074687111AB906F171F18256742406FD83
+              E8739991A1D4A266D157C848CE983C429FB66EC1FE7F0E225D91263A112E62BD
+              0E13563E58C1EE98A884BCBE412C3D544C8E850BAA44D5A4121909ABDB0A797C
+              121A4B0C9012DB144CE89ACD087D4319A613654A88E37FE064C0E3F7C2ECEC83
+              415F874C9E231896D079F3795436BECC2ACF440D5E2C5075EC218ABAB768371E
+              D13C1C3921BA33CF194AA025641886412C804EB5C7DE83237A033253B8778A93
+              909718E4823D0B91AA4C9DF29D1909BA5337EC37D0FAD2694E61E22454505B44
+              46184805DA0C55AA918FA7BB2D8993105F3BF15DF7129BA2CF3D5EDEC44F6833
+              91E6A6CE9F889AA50822E3F2BA88016712879B789B1425E3F6B971951C67B954
+              26E8F956B70DCB7485F8E08950490F2144ED6619B19BCC64ADA097D115CC4ACE
+              C2CE25DB39C757B554A1C3DAC5864842708D38792AE7773BDF10427A43395C3E
+              97E0A34663B4D9AA59D8FE6C0DE7F8BA9FDFC5859B1791284914BC7072898C95
+              F35184CE9ACE6175CB5AA41121100A4A484708ED1883D0DA93EBD176AB4D3021
+              0A93E306762CAE415EDAE3A1844A0D2BE0F439450969A249880A8F82441275CB
+              0FDE21445380C2FA625E2F1C8B8428A82D35971E210140FA10A1AD67BF60952D
+              499AF4BF24E4F43AB1745621DE9BBF7E88D082BD4F939CE63ED122826813A256
+              6376DDC4EF95A7C0F4BBFB034FEE7B06D9AA2C511E3E158428BAAD57F11B25D4
+              DC712CF071EB6651D382A92044D38C8FF23781D9F6E78E40EDE57A9273C8C737
+              59A2FDE049A1583FA4D66157C1779CE3AB4FACC505F3055E424C04E117CDD5CA
+              73CBC06CF86563E0AF7FFF1E57F244C399DC69B9C32F199B149552AA981F2ED8
+              C8395E7D662BDA2DED61274BC9D08569B7B68F6BB1BDE4B7F3663C0AE6D5E6D7
+              03BD8E5E36600C073AC9D4A454EC2EDC35AE15130BAF34BF0693D3C4EB1F7D7E
+              1FD21544B64B1B560468DD8C4FE1D8F84C998D9D05DBA24A68D5F12A74DABA78
+              4F10553A19D949A6A8AE38402379BE709E12CA5466E18782ED8826DE3CFE16BA
+              6CDDFC84A80990BF7B8F506943053972AE7BE4C8C92213851944147E8C615160
+              63B988649BECA44EA523721B3FB4C561C8CF4AC91953B63F69AD660BFAD23093
+              1C926D0F91ED0E92F3C8C197B1B3B27DFFBCC81D6B309FE77B38F557DF2FE13E
+              9E6F10BBB874EB326FC6CA3A5646CA4B26B8D8AC639D9CD0C7835CF51C7CBBF8
+              1BCEF1AA136FE3B2E50A219420DA3B6F873E93139C469F101B9CBE786A387DD8
+              47D2079998E9437409B1E9C300491F82843E3FF7251A3B9A454CF0A24B884DF0
+              7424C1CB5B7F570A5E573C667935D6098D4AC1E99765872BE0F03A442A92448F
+              10679184FE43AF1857B5AC11A98C153D4226BB892492DB9097F65828210ABDE1
+              79B87C4E110A8D1E3C40FC50CDA2AF39C7D79C5C37EC8784111A2A34CA61D0D7
+              DEFE2E8490D1D683A586E582CB59F445D9C9D9611D6B777FB7E085A3B6D35472
+              18DAE43B37E7A38AF5D5673EC351A2786214EB3392B54888A36976F015249CF1
+              BB61ECEF815C3ABEC8642C5047BA4C5714BE581FC492DAA288F2F9B130D6758A
+              50E1F1B2750DE05879E3A8314E427422F97B172255718F5C785118D9AB153DB4
+              4A6DCC5D491ED51B9011C9956410B176694C03803D13BD340E822A89DE101BD7
+              FA0DFA7A5668C2615C8D173EDF208A0E15C339858D174D250D8897F08B4944AD
+              3154D2F75D3C807465945A634814B0F2A149688DB91BD428AB5AD64D7AF352A6
+              3203358BBF62452912086C2FDB822B242613D25E46F5D31FD25E361B9BF2DF27
+              B15994DACB46E2BABD17FBDB0EA0EE523DFABDFD50274E8BA801F096DB02A554
+              81F2DC5254CEAD20C7798A1A00B960F738865A346DDDE8B474A06FC00C8B3BB4
+              45534D444523D3B055A11C75B0455321D614F01FE3B41FB92DD44B4B00000000
+              49454E44AE426082}
+            OnClick = Image3Click
+          end
+          object edPedcli: TEdit
+            Left = 10
+            Top = 19
+            Width = 55
+            Height = 23
+            ImeName = 'Portuguese (Brazilian ABNT)'
+            TabOrder = 0
+            OnExit = edPedcliExit
+          end
+          object Panel5: TPanel
+            Left = 71
+            Top = 19
+            Width = 373
+            Height = 24
+            BevelOuter = bvNone
+            Caption = 'nam'
+            Enabled = False
+            TabOrder = 3
+            object EdNomecli: TEdit
+              Left = 0
+              Top = 0
+              Width = 370
+              Height = 23
+              TabStop = False
+              Color = clSilver
+              ImeName = 'Portuguese (Brazilian ABNT)'
+              ReadOnly = True
+              TabOrder = 0
+            end
+          end
+          object Panel6: TPanel
+            Left = 72
+            Top = 65
+            Width = 331
+            Height = 24
+            BevelOuter = bvNone
+            Caption = 'nam'
+            Enabled = False
+            TabOrder = 4
+            object EdPedNomeProd: TEdit
+              Left = 1
+              Top = 0
+              Width = 327
+              Height = 23
+              TabStop = False
+              Color = clSilver
+              ImeName = 'Portuguese (Brazilian ABNT)'
+              ReadOnly = True
+              TabOrder = 0
+            end
+          end
+          object Panel7: TPanel
+            Left = 408
+            Top = 65
+            Width = 65
+            Height = 24
+            BevelOuter = bvNone
+            Caption = 'nam'
+            Enabled = False
+            TabOrder = 5
+            object EdPedPreco: TEdit
+              Left = 1
+              Top = 0
+              Width = 58
+              Height = 23
+              TabStop = False
+              Color = clSilver
+              ImeName = 'Portuguese (Brazilian ABNT)'
+              ReadOnly = True
+              TabOrder = 0
+            end
+          end
+          object EdPedQtd: TNumberBox
+            Left = 11
+            Top = 110
+            Width = 55
+            Height = 23
+            TabOrder = 2
+            OnExit = EdPedQtdExit
+          end
+          object Panel8: TPanel
+            Left = 76
+            Top = 108
+            Width = 117
+            Height = 30
+            BevelOuter = bvNone
+            Enabled = False
+            TabOrder = 6
+            object EdPedTot: TEdit
+              Left = 0
+              Top = 0
+              Width = 116
+              Height = 28
+              TabStop = False
+              Alignment = taRightJustify
+              Color = clSilver
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -15
+              Font.Name = 'Segoe UI'
+              Font.Style = [fsBold]
+              ImeName = 'Portuguese (Brazilian ABNT)'
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 0
+            end
+          end
+          object EdPedProd: TEdit
+            Left = 8
+            Top = 65
+            Width = 55
+            Height = 23
+            ImeName = 'EdPedProd'
+            TabOrder = 1
+            OnExit = EdPedProdExit
+          end
+          object DBGrid2: TDBGrid
+            Left = 0
+            Top = 156
+            Width = 606
+            Height = 225
+            Align = alBottom
+            DataSource = dsItens
+            TabOrder = 7
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -12
+            TitleFont.Name = 'Segoe UI'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'produto'
+                Title.Caption = 'Produto'
+                Width = 316
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'valor'
+                Title.Alignment = taRightJustify
+                Title.Caption = 'Valor'
+                Width = 92
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Qtd'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Total'
+                Title.Alignment = taRightJustify
+                Width = 96
+                Visible = True
+              end>
+          end
+          object btnSalvar: TBitBtn
+            Left = 199
+            Top = 109
+            Width = 75
+            Height = 25
+            Caption = 'Salvar'
+            TabOrder = 8
+            OnClick = btnSalvarClick
+          end
+        end
+        object Pag2: TTabSheet
+          Caption = 'Busca por C'#243'digo de Pedido'
+          ImageIndex = 1
+          object DBGrid1: TDBGrid
+            Left = 0
+            Top = 153
+            Width = 606
+            Height = 228
+            Align = alClient
+            DataSource = dsItens
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -12
+            TitleFont.Name = 'Segoe UI'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'produto'
+                Title.Caption = 'Produto'
+                Width = 316
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'valor'
+                Title.Alignment = taRightJustify
+                Title.Caption = 'Valor'
+                Width = 92
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Qtd'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Total'
+                Title.Alignment = taRightJustify
+                Width = 96
+                Visible = True
+              end>
+          end
+          object Panel1: TPanel
+            Left = 0
+            Top = 0
+            Width = 606
+            Height = 153
+            Align = alTop
+            BevelOuter = bvNone
+            TabOrder = 1
+            object Label1: TLabel
+              Left = 8
+              Top = 8
+              Width = 156
+              Height = 15
+              Caption = 'Informe o N'#250'mero do Pedido'
+            end
+            object Label4: TLabel
+              Left = 109
+              Top = 59
+              Width = 37
+              Height = 15
+              Caption = 'Cliente'
+            end
+            object Label5: TLabel
+              Left = 7
+              Top = 59
+              Width = 37
+              Height = 15
+              Caption = 'Pedido'
+            end
+            object Label6: TLabel
+              Left = 151
+              Top = 104
+              Width = 64
+              Height = 15
+              Caption = 'Data Pedido'
+            end
+            object Label7: TLabel
+              Left = 242
+              Top = 104
+              Width = 32
+              Height = 15
+              Caption = 'Status'
+            end
+            object Label8: TLabel
+              Left = 364
+              Top = 104
+              Width = 26
+              Height = 15
+              Caption = 'Valor'
+            end
+            object Label3: TLabel
+              Left = 7
+              Top = 104
+              Width = 19
+              Height = 15
+              Caption = 'Cpf'
+            end
+            object edNum: TEdit
+              Left = 8
+              Top = 26
+              Width = 121
+              Height = 23
+              TabOrder = 0
+            end
+            object BtnPesquisar: TBitBtn
+              Left = 135
+              Top = 25
+              Width = 75
+              Height = 25
+              Caption = 'Pesquisar'
+              TabOrder = 1
+              OnClick = BtnPesquisarClick
+            end
+            object rdJson: TRadioGroup
+              Left = 224
+              Top = 8
+              Width = 297
+              Height = 55
+              Caption = 'Como ler o Json '
+              Columns = 2
+              ItemIndex = 0
+              Items.Strings = (
+                'Normal'
+                'Orienta'#231#227'o Objeto')
+              TabOrder = 2
+            end
+            object Panel2: TPanel
+              Left = 7
+              Top = 74
+              Width = 83
+              Height = 24
+              BevelOuter = bvNone
+              Enabled = False
+              TabOrder = 3
+              object edPedido: TEdit
+                Left = 0
+                Top = 0
+                Width = 82
+                Height = 23
+                TabStop = False
+                Color = clSilver
+                ReadOnly = True
+                TabOrder = 0
+              end
+            end
+            object edNome: TEdit
+              Left = 99
+              Top = 75
+              Width = 506
+              Height = 23
+              TabOrder = 4
+            end
+            object edCpf: TEdit
+              Left = 7
+              Top = 122
+              Width = 119
+              Height = 23
+              TabOrder = 5
+            end
+            object edData: TMaskEdit
+              Left = 151
+              Top = 122
+              Width = 67
+              Height = 23
+              EditMask = '99/99/9999;1;_'
+              MaxLength = 10
+              TabOrder = 6
+              Text = '  /  /    '
+            end
+            object Panel3: TPanel
+              Left = 364
+              Top = 122
+              Width = 117
+              Height = 30
+              BevelOuter = bvNone
+              Enabled = False
+              TabOrder = 7
+              object edValor: TEdit
+                Left = 0
+                Top = 0
+                Width = 116
+                Height = 28
+                TabStop = False
+                Alignment = taRightJustify
+                Color = clSilver
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -15
+                Font.Name = 'Segoe UI'
+                Font.Style = [fsBold]
+                ImeName = 'Portuguese (Brazilian ABNT)'
+                ParentFont = False
+                ReadOnly = True
+                TabOrder = 0
+              end
+            end
+            object Panel4: TPanel
+              Left = 240
+              Top = 122
+              Width = 108
+              Height = 24
+              BevelOuter = bvNone
+              Enabled = False
+              TabOrder = 8
+              object EdStatus: TEdit
+                Left = 0
+                Top = 0
+                Width = 106
+                Height = 23
+                TabStop = False
+                Color = clWhite
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -12
+                Font.Name = 'Segoe UI'
+                Font.Style = [fsBold]
+                ParentFont = False
+                ReadOnly = True
+                TabOrder = 0
+              end
+            end
+          end
+        end
+      end
+    end
+    object Texto: TTabSheet
+      Caption = 'Texto Json'
+      ImageIndex = 2
+      object MRespostaJson: TMemo
+        Left = 0
+        Top = 0
+        Width = 614
+        Height = 414
+        Align = alClient
+        TabOrder = 0
+      end
+    end
+  end
+  object rcPedido: TRESTClient
+    Params = <>
+    SynchronizedEvents = False
+    Left = 424
+    Top = 16
+  end
+  object rqPedido: TRESTRequest
+    Client = rcPedido
+    Params = <>
+    Response = rpPedido
+    SynchronizedEvents = False
+    Left = 464
+    Top = 16
+  end
+  object rpPedido: TRESTResponse
+    Left = 504
+    Top = 16
+  end
+  object cdsItens: TClientDataSet
+    Aggregates = <>
+    AggregatesActive = True
+    Params = <>
+    Left = 544
+    Top = 16
+    object cdsItensseq: TIntegerField
+      FieldName = 'seq'
+    end
+    object cdsItensproduto: TStringField
+      FieldName = 'produto'
+      Size = 255
+    end
+    object cdsItensQtd: TIntegerField
+      FieldName = 'Qtd'
+    end
+    object cdsItensvalor: TCurrencyField
+      FieldName = 'valor'
+      DisplayFormat = '###,##0.00'
+    end
+    object cdsItensTotal: TCurrencyField
+      FieldName = 'Total'
+      DisplayFormat = '###,##0.00'
+    end
+    object cdsItensSubtotal: TAggregateField
+      FieldName = 'Subtotal'
+      KeyFields = 'Total'
+      Active = True
+      currency = True
+      DisplayName = ''
+      Expression = 'sum(Total)'
+    end
+  end
+  object dsItens: TDataSource
+    DataSet = cdsItens
+    Left = 576
+    Top = 16
+  end
+  object cdsCliente: TClientDataSet
+    Aggregates = <>
+    AutoCalcFields = False
+    Params = <>
+    Left = 328
+    Top = 12
+    object cdsClienteCodcli: TIntegerField
+      FieldName = 'Codcli'
+    end
+    object cdsClienteCliente: TStringField
+      FieldName = 'Cliente'
+      Size = 255
+    end
+    object cdsClientecpf: TStringField
+      FieldName = 'cpf'
+    end
+  end
+  object dsCliente: TDataSource
+    DataSet = cdsCliente
+    Left = 360
+    Top = 12
+  end
+  object rqCadastro: TRESTRequest
+    Client = rcCadastro
+    Params = <>
+    Response = rpCadastro
+    SynchronizedEvents = False
+    Left = 504
+    Top = 64
+  end
+  object rcCadastro: TRESTClient
+    Params = <>
+    SynchronizedEvents = False
+    Left = 544
+    Top = 64
+  end
+  object rpCadastro: TRESTResponse
+    Left = 576
+    Top = 72
+  end
+  object cdsProduto: TClientDataSet
+    Aggregates = <>
+    AutoCalcFields = False
+    Params = <>
+    Left = 24
+    Top = 364
+    object cdsProdutoCodProd: TIntegerField
+      FieldName = 'CodProd'
+    end
+    object cdsProdutoProduto: TStringField
+      FieldName = 'Produto'
+      Size = 255
+    end
+    object cdsProdutopreco: TCurrencyField
+      FieldName = 'preco'
+      DisplayFormat = '###,##0.00'
+    end
+  end
+  object dsProduto: TDataSource
+    DataSet = cdsProduto
+    Left = 56
+    Top = 364
+  end
+end

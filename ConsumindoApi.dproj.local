@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/01/09 16:55:23.000.104,=C:\Users\GUSTAVO\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/01/09 16:58:31.000.896,C:\Estudos Delphi\Consumnido Api\UConsumindoApi.dfm=C:\Users\GUSTAVO\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/01/09 16:58:31.000.896,C:\Estudos Delphi\Consumnido Api\UConsumindoApi.pas=C:\Users\GUSTAVO\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/01/09 16:58:35.000.981,C:\Estudos Delphi\Consumnido Api\ConsumindoApi.dproj=C:\Users\GUSTAVO\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2024/01/10 08:13:05.000.430,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/10 08:33:30.000.692,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\model.Pedido.pas</Transaction>
+    <Transaction>2024/01/10 08:38:05.000.768,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/10 08:38:53.000.592,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\model.ItensPedido.pas</Transaction>
+    <Transaction>2024/01/10 08:50:36.000.465,C:\Estudos Delphi\Consumindo Api\model.ItensPedido.pas=</Transaction>
+    <Transaction>2024/01/10 08:50:51.000.344,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/10 08:51:49.000.573,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\model.Itens.pas</Transaction>
+    <Transaction>2024/01/10 09:09:12.000.548,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/10 09:10:11.000.542,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\dto.Pedido.pas</Transaction>
+    <Transaction>2024/01/10 09:32:13.000.595,C:\Estudos Delphi\Consumindo Api\dto.Pedido.pas=</Transaction>
+    <Transaction>2024/01/10 09:32:32.000.121,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/10 09:33:47.000.214,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\dto.intefaces.pas</Transaction>
+    <Transaction>2024/01/10 09:34:22.000.884,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/10 09:50:43.000.302,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\dto.pedido.pas</Transaction>
+    <Transaction>2024/01/10 10:19:37.000.559,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/10 10:23:34.000.394,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\dto.itens.pas</Transaction>
+    <Transaction>2024/01/10 16:46:40.000.424,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/10 17:15:52.000.872,C:\Estudos Delphi\Consumindo Api\model.Pedido.pas=</Transaction>
+    <Transaction>2024/01/10 17:15:52.000.956,C:\Estudos Delphi\Consumindo Api\model.Itens.pas=</Transaction>
+    <Transaction>2024/01/10 17:15:53.000.087,C:\Estudos Delphi\Consumindo Api\dto.intefaces.pas=</Transaction>
+    <Transaction>2024/01/10 17:15:53.000.039,C:\Estudos Delphi\Consumindo Api\dto.itens.pas=</Transaction>
+    <Transaction>2024/01/10 17:15:53.000.002,C:\Estudos Delphi\Consumindo Api\dto.pedido.pas=</Transaction>
+    <Transaction>2024/01/11 15:29:14.000.507,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/11 15:30:05.000.281,C:\Estudos Delphi\Consumindo Api\UJson.DTO.pas=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/12 10:15:24.000.925,C:\Estudos Delphi\Consumindo Api\UJson.DTO.pas=</Transaction>
+    <Transaction>2024/01/12 10:15:42.000.520,=C:\Estudos Delphi\Consumindo Api\Unit1.pas</Transaction>
+    <Transaction>2024/01/12 10:16:00.000.520,C:\Estudos Delphi\Consumindo Api\Unit1.pas=C:\Estudos Delphi\Consumindo Api\UJsonDTO.pas</Transaction>
+  </Transactions>
+</BorlandProject>
