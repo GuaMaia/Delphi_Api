@@ -8,7 +8,7 @@ uses
   Data.Bind.Components, Data.Bind.ObjectScope, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.ComCtrls, Vcl.ExtCtrls,System.JSON, Vcl.Mask,System.StrUtils, Data.DB,
   Datasnap.DBClient, Vcl.Grids, Vcl.DBGrids, Vcl.Imaging.pngimage, Vcl.NumberBox,
-  REST.Authenticator.Basic;
+  REST.Authenticator.Basic,Data.DBXJSON,RESTRequest4D;
 
 type
   TFConsumindoApi = class(TForm)
@@ -101,13 +101,13 @@ type
     DBGrid2: TDBGrid;
     btnSalvar: TBitBtn;
     cdsItensSubtotal: TAggregateField;
-    HTTPBasicAuthenticator1: THTTPBasicAuthenticator;
     AbaUsuario: TTabSheet;
     Label17: TLabel;
     Label18: TLabel;
     Image4: TImage;
     edUsuario: TEdit;
     edSenha: TEdit;
+    gpEnvio: TRadioGroup;
     procedure BtnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Image1Click(Sender: TObject);
@@ -150,78 +150,107 @@ uses UJsonDTO,Uusuario;
 procedure TFConsumindoApi.AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco,sSenha: String; bTipUsu : Boolean);
 var
  JsonBody : TJSONObject;
+ lJsonResponse : IResponse;
+ token : String;
 begin
-  Try
-    Try
-      JsonBody := TJSONObject.Create;
+  token := 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb25hdGEiLCJleHAiOjE3MDYxMjUyOTJ9.qc_2SJAiYQrB7l8AFlC-B0e2bUwuVx5G_PtSCwyOB4zftYiSFgaBugM1DhAjPFu3jyuP3OoAbupOWNoXeJh_PQ';
 
-      if sTipo = 'C' then // Cliente
-      begin
-        JsonBody.AddPair('nome',sNome);
-        JsonBody.AddPair('cpf',Scpf);
-      end
-      else
-      if sTipo = 'P' then // Produto
-      begin
-        JsonBody.AddPair('descricao',sNome);
-        JsonBody.AddPair('preco', TJSONNumber.Create(StrToCurr(spreco)));
-      end
-      else
-      if sTipo = 'U' then // Usuário
-      begin
-        JsonBody.AddPair('login',sNome);
-        JsonBody.AddPair('senha',sSenha);
-        JsonBody.AddPair('admin', TJSONBool.Create(bTipUsu));
-      end;
-
-      // post
-      rqCadastro.Params.Clear;
-      rqCadastro.Body.ClearBody; // Limpar o corpo da requisição
-      rqCadastro.Method := rmPOST;
-      rcCadastro.BaseURL :=  sUrl;
-
-      rqCadastro.Body.Add(JsonBody.ToString,
-                            ContentTypeFromString('application/json'));// conten-type - dizendo que é um Json
-
-      rqCadastro.Execute;
-
-      // trata o retorno
-      if rqCadastro.Response.StatusCode <> 201  then
-      begin
-        ShowMessage(rqCadastro.Response.ErrorMessage);
-        exit;
-      end
-      else
-      begin
-         if sTipo = 'C' then
-          ShowMessage('Cliente enviado para Api com sucesso')
-         else
-         if sTipo = 'P' then
-          ShowMessage('Produto enviado para Api com sucesso')
-         else
-         if sTipo = 'U' then
-         begin
-
-          Url:= 'http://localhost:8080/api/usuarios/' ;
-
-          rcPedido.BaseURL :=  Url;
-          rqPedido.Execute;
-          MRespostaJson.Lines.add(rqPedido.Response.JSONText);
-          ShowMessage('Usuário enviado para Api com sucesso');
-         end;
-      end;
-
-    except on ex : Exception do
+  if gpEnvio.ItemIndex = 1 then
+  begin
+    if sTipo = 'C' then // Cliente
     begin
-        ShowMessage('Erro da Api' + ex.Message);
-        exit;
+    lJsonResponse := TRequest.New.BaseURL(sUrl)
+            .ContentType('application/json')
+            .TokenBearer(token)
+            .AddBody('{"nome":"'+ sNome + '","cpf":"' + Scpf +'","}')
+            .Post;
     end;
+  end
+  Else
+  if gpEnvio.ItemIndex = 0 then
+  begin
+    Try
+      Try
+        JsonBody := TJSONObject.Create;
 
+        if sTipo = 'C' then // Cliente
+        begin
+          JsonBody.AddPair('nome',sNome);
+          JsonBody.AddPair('cpf',Scpf);
+        end
+        else
+        if sTipo = 'P' then // Produto
+        begin
+          JsonBody.AddPair('descricao',sNome);
+          JsonBody.AddPair('preco', TJSONNumber.Create(StrToCurr(spreco)));
+        end
+        else
+        if sTipo = 'U' then // Usuário
+        begin
+          JsonBody.AddPair('login',sNome);
+          JsonBody.AddPair('senha',sSenha);
+          JsonBody.AddPair('admin', TJSONBool.Create(bTipUsu));
+        end;
+
+        // post
+        rqCadastro.Params.Clear;
+        rcCadastro.Authenticator := nil;
+
+        rcCadastro.BaseURL :=  sUrl;
+
+        rqCadastro.Params.AddHeader('Authorization',
+          'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb25hdGEiLCJleHAiOjE3MDYxMTczMjZ9.xCwSGXfwXutDPZhRb35GZE2sVBIaLtCL24GhWUasxy3c4eQJ7OIEEZBzYOPDOB84LPZUKmFAsbQg8YJNr5NG4A');
+        rqCadastro.Body.ClearBody;
+        rqCadastro.Body.Add(JsonBody.ToString, ContentTypeFromString('application/json'));
+
+        rqCadastro.Method := rmPOST;
+
+        rqCadastro.Execute;
+
+        // trata o retorno
+        if rqCadastro.Response.StatusCode = 403  then
+        begin
+          ShowMessage('Api Forbidden');
+          exit;
+        end
+        else
+        if rqCadastro.Response.StatusCode <> 201  then
+        begin
+          ShowMessage(rqCadastro.Response.ErrorMessage);
+          exit;
+        end
+        else
+        begin
+           if sTipo = 'C' then
+            ShowMessage('Cliente enviado para Api com sucesso')
+           else
+           if sTipo = 'P' then
+            ShowMessage('Produto enviado para Api com sucesso')
+           else
+           if sTipo = 'U' then
+           begin
+
+            Url:= 'http://localhost:8080/api/usuarios/' ;
+
+            rcPedido.BaseURL :=  Url;
+            rqPedido.Execute;
+            MRespostaJson.Lines.add(rqPedido.Response.JSONText);
+            ShowMessage('Usuário enviado para Api com sucesso');
+           end;
+        end;
+
+      except on ex : Exception do
+      begin
+          ShowMessage('Erro da Api' + ex.Message);
+          exit;
+      end;
+
+      End;
+
+    Finally
+      JsonBody.DisposeOf;
     End;
-
-  Finally
-    JsonBody.DisposeOf;
-  End;
+  end;
 
 end;
 
@@ -396,7 +425,7 @@ procedure TFConsumindoApi.Image1Click(Sender: TObject);
 begin
   if Trim(edCliente.Text) = '' then
   begin
-    Application.MessageBox('Clientte não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+    Application.MessageBox('Cliente não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
     edCliente.SetFocus;
     exit;
   end;
