@@ -108,6 +108,13 @@ type
     edUsuario: TEdit;
     edSenha: TEdit;
     gpEnvio: TRadioGroup;
+    AbaAuth: TTabSheet;
+    Label19: TLabel;
+    Label20: TLabel;
+    Image5: TImage;
+    edautusu: TEdit;
+    edautsenha: TEdit;
+    Mauth: TMemo;
     procedure BtnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Image1Click(Sender: TObject);
@@ -125,6 +132,10 @@ type
     procedure edprecoKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
     procedure Image4Click(Sender: TObject);
+    procedure edSenhaExit(Sender: TObject);
+    procedure TbCadastroChange(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure edautsenhaExit(Sender: TObject);
   private
     { Private declarations }
     Url :String;
@@ -135,7 +146,8 @@ type
     { Public declarations }
     procedure LimparCampos;
     procedure Colorir(sTexto : string);
-    procedure AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco,sSenha: String; bTipUsu : Boolean);
+    function AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco,sSenha: String; bTipUsu : Boolean) : Boolean;
+    procedure Salvar(STipo : String);
   end;
 
 var
@@ -147,14 +159,16 @@ implementation
 
 uses UJsonDTO,Uusuario;
 
-procedure TFConsumindoApi.AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco,sSenha: String; bTipUsu : Boolean);
+function TFConsumindoApi.AdicinaCadastro(sTipo,sNome, Scpf,sUrl,spreco,sSenha: String; bTipUsu : Boolean) : Boolean;
 var
  JsonBody : TJSONObject;
  lJsonResponse : IResponse;
  token : String;
+ jsonResposta: TJSONObject;
+ JsonResp : String;
 begin
-  token := 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb25hdGEiLCJleHAiOjE3MDYxMjUyOTJ9.qc_2SJAiYQrB7l8AFlC-B0e2bUwuVx5G_PtSCwyOB4zftYiSFgaBugM1DhAjPFu3jyuP3OoAbupOWNoXeJh_PQ';
-
+  Result := True;
+  token := Mauth.Lines.Text;
   if gpEnvio.ItemIndex = 1 then
   begin
     if sTipo = 'C' then // Cliente
@@ -190,6 +204,12 @@ begin
           JsonBody.AddPair('login',sNome);
           JsonBody.AddPair('senha',sSenha);
           JsonBody.AddPair('admin', TJSONBool.Create(bTipUsu));
+        end
+        else
+        if sTipo = 'A' then // Autenticação
+        begin
+          JsonBody.AddPair('login',sNome);
+          JsonBody.AddPair('senha',sSenha);
         end;
 
         // post
@@ -198,8 +218,14 @@ begin
 
         rcCadastro.BaseURL :=  sUrl;
 
-        rqCadastro.Params.AddHeader('Authorization',
-          'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb25hdGEiLCJleHAiOjE3MDYxMTczMjZ9.xCwSGXfwXutDPZhRb35GZE2sVBIaLtCL24GhWUasxy3c4eQJ7OIEEZBzYOPDOB84LPZUKmFAsbQg8YJNr5NG4A');
+        if (sTipo = 'P') or (sTipo = 'C') then // Usuário
+        begin
+         rqCadastro.AcceptEncoding:='UTF-8';
+
+          rqCadastro.Params.AddHeader('Authorization',
+            'Bearer ' + token);
+        end;
+
         rqCadastro.Body.ClearBody;
         rqCadastro.Body.Add(JsonBody.ToString, ContentTypeFromString('application/json'));
 
@@ -214,12 +240,6 @@ begin
           exit;
         end
         else
-        if rqCadastro.Response.StatusCode <> 201  then
-        begin
-          ShowMessage(rqCadastro.Response.ErrorMessage);
-          exit;
-        end
-        else
         begin
            if sTipo = 'C' then
             ShowMessage('Cliente enviado para Api com sucesso')
@@ -228,21 +248,40 @@ begin
             ShowMessage('Produto enviado para Api com sucesso')
            else
            if sTipo = 'U' then
+             ShowMessage('Usuário enviado para Api com sucesso')
+           else
+           if sTipo = 'A' then
            begin
+             JsonResp := '';
+             Mauth.Clear;
+             try
+              // Obter os valores específicos do JSON
+              Mauth.Lines.add(rqCadastro.Response.JSONText);
 
-            Url:= 'http://localhost:8080/api/usuarios/' ;
+             // Ler o Json
+             JsonResp := Mauth.Lines.Text;
+             Mauth.Clear;
 
-            rcPedido.BaseURL :=  Url;
-            rqPedido.Execute;
-            MRespostaJson.Lines.add(rqPedido.Response.JSONText);
-            ShowMessage('Usuário enviado para Api com sucesso');
+             jsonResposta := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(JsonResp) ,0) as TJSONObject;
+             // Alimenta o Pedido
+             Mauth.Lines.Add(AnsiReplaceStr(jsonResposta.GetValue('token').ToString, '"', ''));
+            finally
+              jsonResposta.Free;
+            end;
+            ShowMessage('Usuário autenticado com sucesso');
            end;
         end;
 
       except on ex : Exception do
       begin
+        if sTipo = 'A' then
+          Application.MessageBox('Usuário não encontrado!' + #13 +
+          'Usuário ou senha inválido! ','Atenção',MB_ICONEXCLAMATION)
+        else
           ShowMessage('Erro da Api' + ex.Message);
-          exit;
+
+        Result := False;
+        exit;
       end;
 
       End;
@@ -380,6 +419,8 @@ begin
   EdPedNomeProd.Clear;
   EdPedQtd.Clear;
   EdPedTot.Clear;
+  edautsenha.Clear;
+  edautusu.Clear;
   EdPedProd.SetFocus;
 end;
 
@@ -423,55 +464,12 @@ end;
 
 procedure TFConsumindoApi.Image1Click(Sender: TObject);
 begin
-  if Trim(edCliente.Text) = '' then
-  begin
-    Application.MessageBox('Cliente não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
-    edCliente.SetFocus;
-    exit;
-  end;
-
-  if Trim(edCpfCli.Text) = '' then
-  begin
-    Application.MessageBox('Cpf não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
-    edCpfCli.SetFocus;
-    exit;
-  end;
-
-  AdicinaCadastro('C',edCliente.Text,edCpfCli.Text,'http://localhost:8080/api/clientes','','',False);
-  edCliente.Clear;
-  edCpfCli.Clear;
-  edCliente.SetFocus;
+  Salvar('C');
 end;
 
 procedure TFConsumindoApi.Image2Click(Sender: TObject);
 begin
-    if Trim(edProduto.Text) = '' then
-  begin
-    Application.MessageBox('Produto não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
-    edProduto.SetFocus;
-    exit;
-  end;
-
-  if Trim(edpreco.Text) = '' then
-  begin
-    Application.MessageBox('Preço Unitário não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
-    edpreco.SetFocus;
-    exit;
-  end;
-
-  if StrToCurr(edpreco.Text) <=0 then
-  begin
-    Application.MessageBox('Preço Unitário não aceita valor menor ou igual a 0!','Atenção',MB_ICONEXCLAMATION);
-    edpreco.SetFocus;
-    exit;
-  end;
-
-  AdicinaCadastro('P',edProduto.Text,edpreco.Text,'http://localhost:8080/api/produto',edpreco.Text,'',False);
-
-
-  edProduto.Clear;
-  edProduto.SetFocus;
-  edpreco.Text := '0,00';
+    Salvar('P');
 end;
 
 procedure TFConsumindoApi.Image3Click(Sender: TObject);
@@ -547,28 +545,12 @@ end;
 
 procedure TFConsumindoApi.Image4Click(Sender: TObject);
 begin
-  if Trim(edUsuario.Text) = '' then
-  begin
-    Application.MessageBox('Usuário não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
-    PgJson.ActivePageIndex := 0;
-    TbCadastro.ActivePage := AbaUsuario;
-    edUsuario.SetFocus;
-    exit;
-  end;
+  Salvar('U');
+end;
 
-  if Trim(edSenha.Text) = '' then
-  begin
-    Application.MessageBox('Senha não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
-    PgJson.ActivePageIndex := 0;
-    TbCadastro.ActivePage := AbaUsuario;
-    edSenha.SetFocus;
-    exit;
-  end;
-
-  AdicinaCadastro('U',edUsuario.Text,'','http://localhost:8080/api/usuarios','',edSenha.Text,True);
-  edUsuario.Clear;
-  edSenha.Clear;
-  edUsuario.SetFocus;
+procedure TFConsumindoApi.Image5Click(Sender: TObject);
+begin
+  Salvar('A');
 end;
 
 procedure TFConsumindoApi.LimparCampos;
@@ -692,9 +674,158 @@ begin
   JJson.DisposeOf;
 end;
 
+procedure TFConsumindoApi.Salvar(STipo: String);
+begin
+  if STipo = 'U' then
+  begin
+    if Trim(edUsuario.Text) = '' then
+    begin
+      Application.MessageBox('Usuário não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaUsuario;
+      edUsuario.SetFocus;
+      exit;
+    end;
+
+    if Trim(edSenha.Text) = '' then
+    begin
+      Application.MessageBox('Senha não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaUsuario;
+      edSenha.SetFocus;
+      exit;
+    end;
+
+    if AdicinaCadastro('U',edUsuario.Text,'','http://localhost:8080/api/usuarios','',edSenha.Text,True) = True  then
+    begin
+      edUsuario.Clear;
+      edSenha.Clear;
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaUsuario;
+      edUsuario.SetFocus;
+    end
+  end
+  else
+  if STipo = 'C' then
+  begin
+    if Trim(edCliente.Text) = '' then
+    begin
+      Application.MessageBox('Cliente não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaCliente;
+      edCliente.SetFocus;
+      exit;
+    end;
+
+    if Trim(edCpfCli.Text) = '' then
+    begin
+      Application.MessageBox('Cpf não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaCliente;
+      edCpfCli.SetFocus;
+      exit;
+    end;
+
+    if AdicinaCadastro('C',edCliente.Text,edCpfCli.Text,'http://localhost:8080/api/clientes','','',False) = True  then
+    begin
+      edCliente.Clear;
+      edCpfCli.Clear;
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaCliente;
+      edCliente.SetFocus;
+    end;
+  end
+  else
+  if STipo = 'P' then
+  begin
+    if Trim(edProduto.Text) = '' then
+    begin
+      Application.MessageBox('Produto não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaProduto;
+      edProduto.SetFocus;
+      exit;
+    end;
+
+    if Trim(edpreco.Text) = '' then
+    begin
+      Application.MessageBox('Preço Unitário não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaProduto;
+      edpreco.SetFocus;
+      exit;
+    end;
+
+    if StrToCurr(edpreco.Text) <=0 then
+    begin
+      Application.MessageBox('Preço Unitário não aceita valor menor ou igual a 0!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaProduto;
+      edpreco.SetFocus;
+      exit;
+    end;
+
+    if AdicinaCadastro('P',edProduto.Text,edpreco.Text,'http://localhost:8080/api/produto',edpreco.Text,'',False) Then
+    begin
+      edProduto.Clear;
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaProduto;
+      edProduto.SetFocus;
+      edpreco.Text := '0,00';
+    end;
+  end
+  else
+  if STipo = 'A' then
+  begin
+    if Trim(edautusu.Text) = '' then
+    begin
+      Application.MessageBox('Usuário não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaAuth;
+      edautusu.SetFocus;
+      exit;
+    end;
+
+    if Trim(edautsenha.Text) = '' then
+    begin
+      Application.MessageBox('Senha não pode ser vazio!','Atenção',MB_ICONEXCLAMATION);
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaAuth;
+      edautsenha.SetFocus;
+      exit;
+    end;
+
+    Mauth.Clear;
+
+    if AdicinaCadastro('A',edautusu.Text,'','http://localhost:8080/api/usuarios/auth','',edautsenha.Text,True) = True  then
+    begin
+      edautusu.Clear;
+      edautsenha.Clear;
+      PgJson.ActivePageIndex := 0;
+      TbCadastro.ActivePage := AbaAuth;
+      edautusu.SetFocus;
+    end
+  end;
+end;
+
 procedure TFConsumindoApi.SpeedButton1Click(Sender: TObject);
 begin
   BuscaApi ('C','http://localhost:8080/api/clientes','','S');
+end;
+
+procedure TFConsumindoApi.TbCadastroChange(Sender: TObject);
+begin
+  if TbCadastro.ActivePage = AbaUsuario then
+    edUsuario.SetFocus
+  else
+  if TbCadastro.ActivePage = AbaCliente then
+    edCliente.SetFocus
+  else
+  if TbCadastro.ActivePage = AbaProduto then
+    edProduto.SetFocus
+  else
+  if TbCadastro.ActivePage = AbaAuth then
+    edautusu.SetFocus;
 end;
 
 procedure TFConsumindoApi.Colorir(sTexto : string);
@@ -705,9 +836,14 @@ begin
 end;
 
 
+procedure TFConsumindoApi.edautsenhaExit(Sender: TObject);
+begin
+   Salvar('A');
+end;
+
 procedure TFConsumindoApi.edCpfCliExit(Sender: TObject);
 begin
-  Image1Click(sender);
+  Salvar('C');
 end;
 
 procedure TFConsumindoApi.edPedcliExit(Sender: TObject);
@@ -758,13 +894,18 @@ end;
 
 procedure TFConsumindoApi.edprecoExit(Sender: TObject);
 begin
-  Image2Click(Sender);
+  Salvar('P');
 end;
 
 procedure TFConsumindoApi.edprecoKeyPress(Sender: TObject; var Key: Char);
 begin
    if (key in ['0'..'9',','] = false)  then
     key := #0;
+end;
+
+procedure TFConsumindoApi.edSenhaExit(Sender: TObject);
+begin
+  Salvar('U');
 end;
 
 end.
