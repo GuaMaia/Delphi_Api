@@ -1,0 +1,25 @@
+Segue as informações sobre o projeto.
+
+Delphi         : Delphi 11.3 Alexandria	
+
+Orientação objeto : 
+na unit UJsonDTO utilizei a Oob, para obter os dados cliente atraves do Api do metodo 
+get em formato Json.
+
+Projeto :
+O projeto foi ideializado sobre o curso de Api RestFull, feito na Udemy.
+
+O projeto possui dois tipos de cadastros:
+-> Cadastro de usuário
+-> Autenticar  o usuário
+-> Cadastro de Cliente 
+-> Cadastro de produto
+-> Cadastro de pedido.
+
+Banco de Dados : MySql
+
+Importante
+Para gravações , alterações e leitura dos cadastros foram feito
+atraves de Edpoint da Api.
+
+O Projeto de Api esta no repositorio https://github.com/GuaMaia/Intellij_RestApi.
